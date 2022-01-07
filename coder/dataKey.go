@@ -1,11 +1,19 @@
 package coder
 
-import "crypto/sha1"
+import (
+	"crypto/sha1"
+	_ "embed"
+)
+
+var (
+	//go:embed salt.bin
+	saltBin []byte
+)
 
 func DataKey(key, iv []byte, otpSecret string) []byte {
 	newKey := make([]byte, len(key))
 	copy(newKey, key)
-	keySum := []byte{formatVersion}
+	keySum := saltBin
 	keySum = append(keySum, key...)
 	keySum = append(keySum, iv...)
 	keySum = append(keySum, []byte(otpSecret)...)

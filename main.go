@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-const VERSION  = `0.1`
+const VERSION  = `0.2`
 
 var (
 	DebugLog = log.New(os.Stderr, `debug#`, log.Lshortfile)
